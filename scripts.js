@@ -141,10 +141,10 @@ function load_cart_page() {
 			git("add_to_cart").innerHTML += product(data);
 		});
 	}
-	for (product in cart) {
-		$.getJSON("product/" + product + ".json", function(data) {
+	for (item in cart) {
+		$.getJSON("product/" + item + ".json", function(data) {
 			data.no_add = true;
-			data.count = product;
+			data.count = item;
 			git("cart").innerHTML += product(data);
 		});
 	}
