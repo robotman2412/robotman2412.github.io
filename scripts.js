@@ -90,7 +90,7 @@ function product(data) {
 	var add_to_cart = "<button id='add_to_cart' class='shopping-cart' onclick='add_to_cart(\"" + data.id + "\")'>"
 						+ "<i class='fa fa-shopping-cart'></i> add to cart"
 					+ "</button>";
-	if (data.no_add != undefined) {
+	if (data.no_add != undefined && data.no_add = true) {
 		add_to_cart = "";
 	}
 	var elem = "<div class='product-w'>"
@@ -116,8 +116,18 @@ function load_product(data) {
 
 function load_cart_page() {
 	if (cookie.add != undefined) {
-		$.getJSON("product/" + cookie.add, function(data) {
-			 
+		$.getJSON("product/" + cookie.add + ".json", function(data) {
+			data.no_add = true;
+			data.count = true;
+			data.alternate_add = true;
+			git("add_to_cart").innerHTML += product(data);
+		});
+	}
+	for (product in cart) {
+		$.getJSON("product/" + product + ".json", function(data) {
+			data.no_add = true;
+			data.count = true;
+			git("cart").innerHTML += product(data);
 		});
 	}
 }
