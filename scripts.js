@@ -101,15 +101,15 @@ function product(data) {
 	var add_to_cart = "<button id='add_to_cart' class='shopping-cart' onclick='add_to_cart(\"" + data.id + "\")'>"
 						+ "<i class='fa fa-shopping-cart'></i> add to cart"
 					+ "</button>";
-	if (data.no_add != undefined && data.no_add = true) {
+	if (data.no_add == true) {
 		add_to_cart = "";
 	}
-	if (data.alternate_add != undefined && data.alternate_add = true) {
+	if (data.alternate_add == true) {
 		add_to_cart = "<button id='add_to_cart' class='shopping-cart' onclick='add_to_cart_now(\"" + data.id + "\")'>"
 						+ "<i class='fa fa-shopping-cart'></i> add to cart"
 					+ "</button>";
 	}
-	if (data.add = true) {
+	if (data.add == true) {
 		
 	}
 	var elem = "<div class='product-w'>"
