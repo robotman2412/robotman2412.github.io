@@ -82,6 +82,17 @@ function load_products() {
 	});
 }
 
+function add_to_cart_now(id) {
+	//let count = git("add_to_cart_count").value;
+	git("add_to_cart").innerHTML = "";
+	cart[id] = count;
+	$.getJSON("product/" + product + ".json", function(data) {
+		data.no_add = true;
+		data.count = product;
+		git("cart").innerHTML += product(data);
+	});
+}
+
 function add_to_cart(id) {
 	document.location = "cart.html?add=" + id + "&return=" + encodeURIComponent(document.location);
 }
@@ -92,6 +103,14 @@ function product(data) {
 					+ "</button>";
 	if (data.no_add != undefined && data.no_add = true) {
 		add_to_cart = "";
+	}
+	if (data.alternate_add != undefined && data.alternate_add = true) {
+		add_to_cart = "<button id='add_to_cart' class='shopping-cart' onclick='add_to_cart_now(\"" + data.id + "\")'>"
+						+ "<i class='fa fa-shopping-cart'></i> add to cart"
+					+ "</button>";
+	}
+	if (data.add = true) {
+		
 	}
 	var elem = "<div class='product-w'>"
 				 + "<div class='product'>"
@@ -117,7 +136,6 @@ function load_product(data) {
 function load_cart_page() {
 	if (cookie.add != undefined) {
 		$.getJSON("product/" + cookie.add + ".json", function(data) {
-			data.no_add = true;
 			data.count = true;
 			data.alternate_add = true;
 			git("add_to_cart").innerHTML += product(data);
@@ -126,7 +144,7 @@ function load_cart_page() {
 	for (product in cart) {
 		$.getJSON("product/" + product + ".json", function(data) {
 			data.no_add = true;
-			data.count = true;
+			data.count = product;
 			git("cart").innerHTML += product(data);
 		});
 	}
