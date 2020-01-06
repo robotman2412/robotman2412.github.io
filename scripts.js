@@ -134,7 +134,7 @@ function load_product(data) {
 }
 
 function load_cart_page() {
-	if (cookie.add != undefined) {
+	if (query.add != undefined) {
 		$.getJSON("product/" + cookie.add + ".json", function(data) {
 			data.count = true;
 			data.alternate_add = true;
