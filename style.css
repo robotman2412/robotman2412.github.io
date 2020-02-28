@@ -1,0 +1,32 @@
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #ffffff;
+}
+
+div.grid-container-large {
+	position: absolute;
+	left: 100px;
+	top: 100px;
+	right: 20px;
+	bottom: 20px;
+	border: 1px solid #cfcfcf;
+}
+
+div.grid-corner {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background-color: #cfcfcf;
+	border-bottom: 4px solid #afafaf;
+	border-right: 4px solid #afafaf;
+}
+
+div.grid-row-colomn {
+	position: absolute;
+	background-color: #cfcfcf;
+	border-bottom: 1px solid #afafaf;
+	border-right: 1px solid #afafaf;
+	text-align: center;
+	font-size: 10px;
+}
