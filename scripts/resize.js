@@ -93,6 +93,7 @@ function add_listeners() {
 		control_key = event.ctrlKey;
 	}
 	function handleContextMenu(event) {
+		console.log("ok denmfs");
 		var clazz = event.srcElement.getAttribute("class");
 		if (clazz != null && clazz.indexOf("drag") != -1) {
 			if (dragging == null) {

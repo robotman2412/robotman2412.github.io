@@ -13,7 +13,13 @@ function initialise_grid(grid_id, grid_width, grid_height, colomn_size, row_size
 	for (var x = 0; x < grid_width; x++) {
 		values[x] = [];
 		for (var y = 0; y < grid_height; y++) {
-			values[x][y] = "";
+			values[x][y] = {
+				parent: null, //if present, points to x/y of parent cell, used for cell merging
+				content: "",
+				type: "text", //can be: text, script, number, number/sometype, custom:whatever
+				formatting: "default", //the formatting id of the cell
+				formatting_rules_applied: [] //the formatting rules applied, ids as well
+			};
 			temp += parse_template("cell_template", {
 				grid_id: grid_id,
 				left: colomn_size * x + left_thingy_size,
@@ -65,9 +71,18 @@ function initialise_grid(grid_id, grid_width, grid_height, colomn_size, row_size
 		height: grid_height,
 		row_sizes: row_sizes,
 		colomn_sizes: colomn_sizes,
-		values: values,
+		cells: values,
 		width: grid_width,
 		height: grid_height,
+		formatting: {
+			default: { //as it is the default, it can't be changed
+				name: "Default formatting scheme",
+				background: "color #ffffff",
+				background_error: "striped 5#ff0000 5#ffffff",
+				font_size: font_size,
+				font_style: "color #000000"
+			}
+		},
 		selections: [
 			{
 				x0: 0,
@@ -100,6 +115,7 @@ function initialise_grid(grid_id, grid_width, grid_height, colomn_size, row_size
 				}
 				x_offs += this.colomn_sizes[x];
 			}
+			snap_updateselect(this.id, this.active_cell.x, this.active_cell.y);
 		},
 		set_row_size: function(row, size) {
 			if (row < 0) {

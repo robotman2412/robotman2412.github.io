@@ -9,7 +9,7 @@
 		<script src="scripts/resize.js"></script>
 		<script src="scripts/selection.js"></script>
 	</head>
-	<body onload="add_listeners(); initialise_grid(0, 13, 30, 75, 21, 15, 11); startselect(0, 0, 0); endselect();" onmouseup="undrag(); endselect();">
+	<body onload="add_listeners(); add_selection_mover(); initialise_grid(0, 13, 30, 75, 21, 15, 11); startselect(0, 0, 0); endselect();" onmouseup="undrag(); endselect();">
 		<div id="templater" style="display: none;"></div>
 		<template id="cell_template">
 			<div id="grid_meta[grid_id]_cell_meta[cell_id]" style="cursor: cell; left: meta[left]px; top: meta[top]px; width: meta[width]px; height: meta[height]px;" class="cell">
